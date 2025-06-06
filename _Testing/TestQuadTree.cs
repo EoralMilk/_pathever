@@ -16,6 +16,8 @@ public partial class TestQuadTree : Node3D
     [Export]
     public MeshInstance3D SelectorRange;
     [Export]
+    public Material UnseletedMat;
+    [Export]
     public Material SeletedMat;
     [Export]
     public n_LineMeshes SelectLine;
@@ -35,6 +37,7 @@ public partial class TestQuadTree : Node3D
         base._Ready();
         Quadtree = new Quadtree<n_Bound>(TreeBound, (t) => t.GlobalRect, 4);
         NodeTemp.Visible = false;
+        SelectorRange.Visible = false;
     }
 
     public override void _Process(double delta)
@@ -68,11 +71,19 @@ public partial class TestQuadTree : Node3D
             else if (IsSelecting)
             {
                 IsSelecting = false;
-                SelectorRange.Visible = IsSelecting;
+                //SelectorRange.Visible = IsSelecting;
 
                 foreach (var item in SelectingNodes)
                 {
-                    //(item.FindChild("MeshInstance3D") as MeshInstance3D).MaterialOverride = null;
+                    var n = (item.FindChild("MeshInstance3D", false, false) as MeshInstance3D);
+                    if (n != null)
+                    {
+                        n.MaterialOverride = UnseletedMat;
+
+                    }
+                    else
+                        GD.PrintErr("MeshInstance3D is null");
+
                 }
 
                 // search tree
@@ -91,8 +102,13 @@ public partial class TestQuadTree : Node3D
 
                 foreach (var item in SelectingNodes)
                 {
-                    //(item.FindChild("MeshInstance3D") as MeshInstance3D).MaterialOverride = SeletedMat;
-                    GD.Print(item.Name);
+                    var n = (item.FindChild("MeshInstance3D", false, false) as MeshInstance3D);
+                    if (n != null)
+                    {
+                        n.MaterialOverride = SeletedMat;
+                    }
+                    else
+                        GD.PrintErr("MeshInstance3D is null");
                 }
             }
 
@@ -103,9 +119,10 @@ public partial class TestQuadTree : Node3D
                 NodeTemp.GetParent().AddChild(newnode);
                 newnode.Visible = true;
                 newnode.GlobalPosition = cursorPoint;
-                newnode.Scale = new Vector3(GD.Randf() * 2f + 1, 1, GD.Randf() * 2f + 1f);
+                newnode.Scale = new Vector3(GD.Randf() * 6f + 1, 1, GD.Randf() * 6f + 1f);
                 newnode.Bound.Position = new Vector3(-0.5f,-0.5f,-0.5f);
                 newnode.Bound.End = new Vector3(0.5f, 0.5f, 0.5f);
+                newnode.Rotate(new Vector3(GD.Randf() - 0.5f, GD.Randf() - 0.5f, GD.Randf() - 0.5f).Normalized(), GD.Randf() * float.Pi);
 
                 Stopwatch stopwatch = Stopwatch.StartNew();
                 newnode.UpdateBound();
