@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://sfkwgs1bpx2a"]
+
+[ext_resource type="Script" uid="uid://bxtnwnrt73icx" path="res://addons/test_nav/testButton.cs" id="1_n61aa"]
+
+[node name="TestButton" type="Button"]
+offset_right = 185.0
+offset_bottom = 124.0
+text = "Test Button"
+script = ExtResource("1_n61aa")
+metadata/_custom_type_script = "uid://bxtnwnrt73icx"

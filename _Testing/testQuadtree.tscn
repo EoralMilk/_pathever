@@ -1,0 +1,126 @@
+[gd_scene load_steps=19 format=4 uid="uid://bwopod0fxfvoi"]
+
+[ext_resource type="Script" uid="uid://b7mtsa6vdxka3" path="res://_Testing/TestQuadTree.cs" id="1_slt51"]
+[ext_resource type="Material" uid="uid://bvjhhutvwm2ou" path="res://_Testing/obstacle.tres" id="2_tvbgo"]
+[ext_resource type="PackedScene" uid="uid://b551ohltmn0gb" path="res://_NodeTemplates/PlayerCamera.tscn" id="3_8hqtx"]
+[ext_resource type="Material" uid="uid://c5vp5pqpqvwro" path="res://_Testing/ground.tres" id="4_f5lcx"]
+[ext_resource type="Script" uid="uid://dx7obfadujc5f" path="res://Scripts/Spatial/n_Bound.cs" id="5_dnafx"]
+[ext_resource type="Shader" uid="uid://c8seq5kt81l0x" path="res://selectRange.tres" id="6_ln8g0"]
+[ext_resource type="Material" uid="uid://d38au271fipcj" path="res://_Testing/line.tres" id="7_8hqtx"]
+[ext_resource type="Script" uid="uid://dmdhpiqf2q5i6" path="res://Scripts/Render/n_LineMeshes.cs" id="7_tvbgo"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g24lm"]
+
+[sub_resource type="Sky" id="Sky_ijgdv"]
+sky_material = SubResource("ProceduralSkyMaterial_g24lm")
+
+[sub_resource type="Environment" id="Environment_0sjk5"]
+background_mode = 2
+sky = SubResource("Sky_ijgdv")
+ambient_light_source = 3
+ambient_light_color = Color(0.65834, 0.65834, 0.65834, 1)
+reflected_light_source = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_a5868"]
+size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0uaih"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8hqtx"]
+albedo_color = Color(0.256729, 0.503449, 0.320657, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_eoblj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a2j2j"]
+render_priority = 0
+shader = ExtResource("6_ln8g0")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_mh67a"]
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 2, 2),
+"format": 34896613377,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAgABAAMAAAAEAAEAAgADAAUABgAEAAAABQADAAcABgAHAAQABQAHAAYA"),
+"name": "立方体",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAD/////AAAAAAAA//8AAAAA//8AAAAAAAAAAAAAAAD//wAA//8AAP////8AAAAA////////AAD//wAAAAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_b5ftx"]
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 2, 2),
+"attribute_data": PackedByteArray("AAAAAAAA/////wAA/////wAAAAAAAP////8AAP///////wAA/////wAAAAAAAP////8AAP////8AAAAAAAD//w=="),
+"format": 34896613399,
+"index_count": 24,
+"index_data": PackedByteArray("AAABAAIAAgABAAMABAAFAAYABgAFAAcACAAJAAoACgAJAAsADAANAA4ADgANAA8A"),
+"name": "立方体",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AAD/////AAAAAAAA//8AAAAA//8AAAAAAAAAAAAAAAAAAP//AAAAAAAAAAAAAAAA/////wAAAAD//wAAAAAAAP////8AAP+///8AAAAA/7//////////v///AAD///+/////////AID//wAA//8AgAAA/////wCAAAAAAP//AID/P/9//z//f/8//3//P/9/////f////3////9/////f/9/AAD/fwAA/38AAP9/AAD/f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_mh67a")
+
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("NodeTemp", "SelectorRange", "SelectLine", "NodeLine")]
+script = ExtResource("1_slt51")
+NodeTemp = NodePath("TestNode")
+SelectorRange = NodePath("SelectRange")
+SeletedMat = ExtResource("2_tvbgo")
+SelectLine = NodePath("Line")
+NodeLine = NodePath("Line2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.751906, 0.127155, 0.646892, -0.435281, -0.641198, 0.631978, 0.495145, -0.756767, -0.426772, -2.13122, 8.97432, -4.08513)
+light_energy = 3.721
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0sjk5")
+
+[node name="PlayerCamera" parent="." instance=ExtResource("3_8hqtx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.90735e-06, 13.9654, -29.4152)
+
+[node name="CameraCenter" parent="PlayerCamera" index="0"]
+transform = Transform3D(-1, 6.18172e-08, -6.18172e-08, 0, 0.707107, 0.707107, 8.74228e-08, 0.707107, -0.707107, 0, 0, 0)
+
+[node name="ground" type="MeshInstance3D" parent="."]
+material_override = ExtResource("4_f5lcx")
+mesh = SubResource("PlaneMesh_a5868")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ground/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000694275, -0.395149, 0.0465775)
+shape = SubResource("BoxShape3D_0uaih")
+
+[node name="TestNode" type="Node3D" parent="."]
+script = ExtResource("5_dnafx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="TestNode"]
+material_override = SubResource("StandardMaterial3D_8hqtx")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_eoblj")
+
+[node name="SelectRange" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_a2j2j")
+cast_shadow = 0
+ignore_occlusion_culling = true
+mesh = SubResource("ArrayMesh_b5ftx")
+
+[node name="Line" type="MeshInstance3D" parent="."]
+material_override = ExtResource("7_8hqtx")
+script = ExtResource("7_tvbgo")
+LineColor = Color(3.46541e-06, 0.545345, 0.847881, 1)
+
+[node name="Line2" type="MeshInstance3D" parent="."]
+material_override = ExtResource("7_8hqtx")
+script = ExtResource("7_tvbgo")
+LineColor = Color(0.92, 0.869707, 0.1656, 1)
+Width = 0.1
+
+[editable path="PlayerCamera"]

@@ -1,0 +1,53 @@
+[gd_resource type="VisualShader" load_steps=5 format=3 uid="uid://c8seq5kt81l0x"]
+
+[sub_resource type="Gradient" id="Gradient_4p4n4"]
+colors = PackedColorArray(0, 0, 0, 1, 0.4, 0.4, 0.4, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sqdga"]
+gradient = SubResource("Gradient_4p4n4")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_n0f65"]
+texture = SubResource("GradientTexture2D_sqdga")
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_sxny0"]
+constant = Color(0.6892, 0.30826, 0.320294, 1)
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_add, depth_draw_opaque, cull_disabled, diffuse_toon, specular_disabled, unshaded, shadows_disabled, ambient_light_disabled, fog_disabled;
+
+uniform sampler2D tex_frg_2;
+
+
+
+void fragment() {
+// ColorConstant:3
+	vec4 n_out3p0 = vec4(0.689200, 0.308260, 0.320294, 1.000000);
+
+
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, UV);
+
+
+// Output:0
+	ALBEDO = vec3(n_out3p0.xyz);
+	ALPHA = n_out2p0.x;
+
+
+}
+"
+graph_offset = Vector2(-163.816, -76.0244)
+modes/blend = 1
+modes/cull = 2
+modes/diffuse = 3
+modes/specular = 2
+flags/unshaded = true
+flags/shadows_disabled = true
+flags/ambient_light_disabled = true
+flags/fog_disabled = true
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_n0f65")
+nodes/fragment/2/position = Vector2(-220, 240)
+nodes/fragment/3/node = SubResource("VisualShaderNodeColorConstant_sxny0")
+nodes/fragment/3/position = Vector2(-360, 40)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 1, 3, 0, 0, 0)

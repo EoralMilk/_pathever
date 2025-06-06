@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b551ohltmn0gb"]
+
+[ext_resource type="Script" uid="uid://dqdjewj3pwfr" path="res://_NodeTemplates/RemoveOnRun.cs" id="1_57bvv"]
+[ext_resource type="Script" uid="uid://by63k8xwpjhsp" path="res://Scripts/PlayerPerseption/n_PlayerCamera.cs" id="1_i2gxr"]
+[ext_resource type="ArrayMesh" uid="uid://toarwe5rotrg" path="res://_NodeTemplates/editor_camera.obj" id="2_i2gxr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_48lax"]
+
+[node name="PlayerCamera" type="Marker3D" node_paths=PackedStringArray("Camera")]
+gizmo_extents = 1.0
+script = ExtResource("1_i2gxr")
+Camera = NodePath("CameraCenter/Camera3D")
+
+[node name="CameraCenter" type="Marker3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="CameraCenter"]
+
+[node name="RemoveOnRun" type="Node3D" parent="CameraCenter/Camera3D"]
+script = ExtResource("1_57bvv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CameraCenter/Camera3D/RemoveOnRun"]
+transform = Transform3D(-0.483177, 0, -4.22407e-08, 0, 0.483177, 0, 4.22407e-08, 0, -0.483177, 0.000936747, -0.00109631, 0.000634313)
+material_override = SubResource("StandardMaterial3D_48lax")
+mesh = ExtResource("2_i2gxr")
+skeleton = NodePath("../..")

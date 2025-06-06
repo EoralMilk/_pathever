@@ -1,0 +1,19 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_PathEver", "_PathEver.csproj", "{89C519C2-DF3A-435A-A8FC-0A5942E739AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+	Debug|Any CPU = Debug|Any CPU
+	ExportDebug|Any CPU = ExportDebug|Any CPU
+	ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{89C519C2-DF3A-435A-A8FC-0A5942E739AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89C519C2-DF3A-435A-A8FC-0A5942E739AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89C519C2-DF3A-435A-A8FC-0A5942E739AF}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{89C519C2-DF3A-435A-A8FC-0A5942E739AF}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{89C519C2-DF3A-435A-A8FC-0A5942E739AF}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{89C519C2-DF3A-435A-A8FC-0A5942E739AF}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+EndGlobal
