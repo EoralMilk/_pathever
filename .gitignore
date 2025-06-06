@@ -1,0 +1,180 @@
+
+
+# -------------------- #
+# Godot 4.4 核心规则 #
+# -------------------- #
+# 导入设置和缓存
+.import/
+*.import
+
+# Godot 设置目录（包含编辑器设置）
+.godot/
+/android/
+
+# 导出预设
+export_presets.cfg
+
+# Godot 日志和缓存
+logs/
+tmp/
+*.pidb
+*.opendb
+*.opendb.*
+
+# 场景备份文件
+*.backup.tscn
+*.backup.scn
+*.backup.res
+*.backup.tres
+
+
+# ------------------ #
+# C# 项目通用规则 #
+# ------------------ #
+# .NET 编译输出
+bin/
+obj/
+[Bb]uild/
+[Oo]bj/
+out/
+
+# Mono 运行时文件
+.mono/
+
+# NuGet 包
+.nuget/
+​**​/packages/*
+!​**​/packages/repositories.config
+*.nupkg
+
+# 可执行文件和库
+*.exe
+*.dll
+*.so
+*.dylib
+*.pdb
+*.mdb
+*.ilk
+
+
+# ----------------------- #
+# Visual Studio 专属规则 #
+# ----------------------- #
+# VS 解决方案文件（保留.sln，但忽略用户文件）
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.sln.ide
+
+# VS 缓存目录
+.vs/
+.vsconfig
+
+# 项目文件用户设置
+*.csproj.user
+*.vcxproj.user
+
+
+# --------------------------- #
+# Visual Studio Code 专属规则 #
+# --------------------------- #
+.vscode/*
+!.vscode/settings.json   # 保留共享设置
+!.vscode/tasks.json      # 保留共享任务
+!.vscode/launch.json     # 保留调试配置
+.vscode/*.code-workspace # 忽略所有工作区文件
+
+# 扩展缓存
+.vscode/extensions.json  # 保留但不忽略
+.vscode/ipch/
+
+# VSCode 日志和缓存
+.vscode/logs/
+.vscode/storage/
+.vscode/workspaceStorage/
+
+
+# ----------------- #
+# 操作系统文件规则 #
+# ----------------- #
+# Windows
+Thumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+*.DS_Store?
+
+# Linux
+*~
+.fuse_hidden*
+
+
+# ------------------- #
+# 其他工具相关规则 #
+# ------------------- #
+# JetBrains Rider（如果使用）
+.idea/
+*.DotSettings
+*.DotSettings.user
+*.sln.iml
+
+# Unity 文件（如果同时使用）
+[Tt]emp/
+[Ll]ibrary/
+[Uu]ser[Ss]ettings/
+[Bb]ackup/
+[Ll]ogs/
+
+
+# ---------------- #
+# 临时文件规则 #
+# ---------------- #
+# 通用临时文件
+*.tmp
+*.bak
+*.backup
+*.swp
+*.swo
+*.swn
+*.cache
+~$*.doc*
+*.lock
+
+# 性能分析报告
+*.profdata
+*.profraw
+
+# 内存转储文件
+*.dmp
+*.heapdump
+*.core
+
+# 日志文件
+*.log
+log.txt
+output_log_*.txt
+
+
+# -------------------- #
+# 特殊规则（可选的） #
+# -------------------- #
+# 如果你想保留大型资源在版本控制外：
+#assets/cinematics/*.mp4
+#assets/audio/*.wav
+#assets/textures/4k/*.png
+
+# 保留但忽略特定导入文件（示例）
+#assets/​**​/*.md5
+#assets/​**​/Thumbs.db
+#assets/​**​/Desktop.ini
